@@ -15,4 +15,8 @@ public class MenuCount {
             throw new IllegalArgumentException(COUNT_ERROR);
         }
     }
+
+    public Integer getValue() {
+        return value;
+    }
 }

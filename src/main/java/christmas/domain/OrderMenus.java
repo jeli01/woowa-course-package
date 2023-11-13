@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -32,5 +33,15 @@ public class OrderMenus {
             }
         }
         return true;
+    }
+
+    public Integer obtainOrderMenuTotalCount() {
+        Collection<MenuCount> values = orderMenus.values();
+        Integer totalCount = 0;
+        for (MenuCount menuCount : values) {
+            totalCount += menuCount.getValue();
+        }
+
+        return totalCount;
     }
 }

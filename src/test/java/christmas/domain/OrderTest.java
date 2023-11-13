@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import static christmas.domain.Order.DRINK_ONLY_ERROR;
+import static christmas.domain.Order.MAX_ORDER_COUNT_ERROR;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -28,5 +29,17 @@ class OrderTest {
 
         Assertions.assertThatCode(() -> {
         }).hasMessageContaining(DRINK_ONLY_ERROR);
+    }
+
+    @Test
+    @DisplayName("총 주문 메뉴의 수가 21개를 넘겼을 경우, 에러가 발생한다.")
+    void checkTotalMenuCount() {
+        OrderMenus orderMenus = new OrderMenus();
+        orderMenus.addMenu(Menu.CHAMPAGNE, new MenuCount(10));
+        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(15));
+
+        Assertions.assertThatCode(() -> {
+            new Order(new VisitDay(10), orderMenus);
+        }).hasMessageContaining(MAX_ORDER_COUNT_ERROR);
     }
 }
