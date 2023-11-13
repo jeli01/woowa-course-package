@@ -40,4 +40,11 @@ public enum Menu {
         }
         throw new IllegalArgumentException(NOT_EXISTS_ERROR);
     }
+
+    public static boolean isDrink(Menu menu) {
+        if (menu.category == DRINK) {
+            return true;
+        }
+        return false;
+    }
 }
