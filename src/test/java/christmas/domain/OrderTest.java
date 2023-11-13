@@ -28,6 +28,7 @@ class OrderTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
 
         Assertions.assertThatCode(() -> {
+            new Order(new VisitDay(10), orderMenus);
         }).hasMessageContaining(DRINK_ONLY_ERROR);
     }
 
