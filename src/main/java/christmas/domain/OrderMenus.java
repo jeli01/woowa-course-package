@@ -56,4 +56,15 @@ public class OrderMenus {
         }
         return count;
     }
+
+    public Integer obtainTotalPrice() {
+        Integer totalPrice = 0;
+        Set<Menu> menus = orderMenus.keySet();
+        for (Menu menu : menus) {
+            MenuCount menuCount = orderMenus.get(menu);
+            Integer oneKindMenuPrice = menu.obtainPriceMultiplyCount(menuCount);
+            totalPrice += oneKindMenuPrice;
+        }
+        return totalPrice;
+    }
 }

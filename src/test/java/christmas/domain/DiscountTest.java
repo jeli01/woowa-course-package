@@ -61,4 +61,16 @@ class DiscountTest {
 
         Assertions.assertThat(Discount.obtainStarDiscount(order)).isEqualTo(1000);
     }
+
+    @Test
+    @DisplayName("할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정한다.")
+    void checkChampagnePresent() {
+        Assertions.assertThat(Discount.isPossibleGetChampagne(120_000)).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("할인 전 총주문 금액이 12만 원 미만일 때, 샴페인을 증정하지 않는다.")
+    void checkNoChampagnePresent() {
+        Assertions.assertThat(Discount.isPossibleGetChampagne(119_999)).isEqualTo(false);
+    }
 }

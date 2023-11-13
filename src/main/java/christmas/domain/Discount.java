@@ -6,6 +6,7 @@ public class Discount {
     private static final Integer INITIAL_D_DAY_DISCOUNT = 1_000;
     private static final Integer WEEK_KIND_DISCOUNT_UNIT = 2_023;
     private static final Integer STAR_DAY_DISCOUNT = 1_000;
+    private static final Integer GET_CHAMPAGNE_PRICE = 120_000;
 
     public static Integer obtainChristmasDDayDiscount(Order order) {
         final Integer discount = INITIAL_D_DAY_DISCOUNT;
@@ -36,4 +37,12 @@ public class Discount {
         }
         return 0;
     }
+
+    public static boolean isPossibleGetChampagne(Integer totalPrice) {
+        if (totalPrice >= GET_CHAMPAGNE_PRICE) {
+            return true;
+        }
+        return false;
+    }
+
 }

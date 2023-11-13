@@ -42,4 +42,8 @@ public class Order {
     public boolean isStarDay() {
         return visitDay.isStar();
     }
+
+    public Integer obtainTotalPrice() {
+        return orderMenus.obtainTotalPrice();
+    }
 }

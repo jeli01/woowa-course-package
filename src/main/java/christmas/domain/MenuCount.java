@@ -19,4 +19,8 @@ public class MenuCount {
     public Integer obtainSumWithCount(Integer input) {
         return input + value;
     }
+
+    public Integer obtainPriceMultiplyCount(Integer price) {
+        return price * value;
+    }
 }
