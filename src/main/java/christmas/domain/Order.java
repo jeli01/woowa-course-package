@@ -38,4 +38,8 @@ public class Order {
     public Integer obtainMenuCategoryCount(MenuCategory menuCategory) {
         return orderMenus.obtainMenuCategoryCount(menuCategory);
     }
+
+    public boolean isStarDay() {
+        return visitDay.isStar();
+    }
 }

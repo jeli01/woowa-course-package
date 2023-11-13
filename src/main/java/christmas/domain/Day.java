@@ -39,6 +39,14 @@ public class Day {
         return false;
     }
 
+    public boolean isStar() {
+        List<Day> starDays = EventDayProvider.obtainStarDays();
+        if (starDays.contains(new Day(day))) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object object) {
         Day product = (Day) object;

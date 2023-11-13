@@ -51,4 +51,14 @@ class DiscountTest {
 
         Assertions.assertThat(Discount.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 7);
     }
+
+    @Test
+    @DisplayName("이벤트 달력에 별이 있으면 총주문 금액에서 1,000원 할인한다.")
+    void checkStarDayDiscount() {
+        final OrderMenus orderMenus = new OrderMenus();
+        orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(7));
+        final Order order = new Order(new Day(3), orderMenus);
+
+        Assertions.assertThat(Discount.obtainStarDiscount(order)).isEqualTo(1000);
+    }
 }
