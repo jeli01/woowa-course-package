@@ -16,7 +16,7 @@ class OrderTest {
         orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(5));
 
         Assertions.assertThatCode(() -> {
-            new Order(new VisitDay(10), orderMenus);
+            new Order(new Day(10), orderMenus);
         }).doesNotThrowAnyException();
     }
 
@@ -28,7 +28,7 @@ class OrderTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
 
         Assertions.assertThatCode(() -> {
-            new Order(new VisitDay(10), orderMenus);
+            new Order(new Day(10), orderMenus);
         }).hasMessageContaining(DRINK_ONLY_ERROR);
     }
 
@@ -40,7 +40,7 @@ class OrderTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(15));
 
         Assertions.assertThatCode(() -> {
-            new Order(new VisitDay(10), orderMenus);
+            new Order(new Day(10), orderMenus);
         }).hasMessageContaining(MAX_ORDER_COUNT_ERROR);
     }
 }
