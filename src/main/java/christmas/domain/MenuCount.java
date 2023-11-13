@@ -16,7 +16,7 @@ public class MenuCount {
         }
     }
 
-    public Integer getValue() {
-        return value;
+    public Integer obtainSumWithCount(Integer input) {
+        return input + value;
     }
 }

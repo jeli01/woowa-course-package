@@ -28,7 +28,7 @@ public class OrderMenus {
     public boolean isOnlyDrink() {
         Set<Menu> menus = orderMenus.keySet();
         for (Menu menu : menus) {
-            if (!Menu.isDrink(menu)) {
+            if (!menu.isDrink()) {
                 return false;
             }
         }
@@ -39,7 +39,7 @@ public class OrderMenus {
         Collection<MenuCount> values = orderMenus.values();
         Integer totalCount = 0;
         for (MenuCount menuCount : values) {
-            totalCount += menuCount.getValue();
+            totalCount = menuCount.obtainSumWithCount(totalCount);
         }
 
         return totalCount;
@@ -51,7 +51,7 @@ public class OrderMenus {
         for (Menu menu : menus) {
             if (menu.isCategory(menuCategory)) {
                 MenuCount menuCount = orderMenus.get(menu);
-                count += menuCount.getValue();
+                count = menuCount.obtainSumWithCount(count);
             }
         }
         return count;
