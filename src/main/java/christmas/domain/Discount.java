@@ -44,5 +44,4 @@ public class Discount {
         }
         return false;
     }
-
 }
