@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class DiscountTest {
+class EventTest {
     @Test
     @DisplayName("2023.12.1에 1000원으로 이벤트가 시작된다.")
     void checkDDayStartDiscount() {
@@ -15,7 +15,7 @@ class DiscountTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
         Order order = new Order(new Day(1), orderMenus);
 
-        Assertions.assertThat(Discount.obtainChristmasDDayDiscount(order)).isEqualTo(1000);
+        Assertions.assertThat(Event.obtainChristmasDDayDiscount(order)).isEqualTo(1000);
     }
 
     @ParameterizedTest
@@ -27,7 +27,7 @@ class DiscountTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
         Order order = new Order(new Day(day), orderMenus);
 
-        Assertions.assertThat(Discount.obtainChristmasDDayDiscount(order)).isEqualTo(discount);
+        Assertions.assertThat(Event.obtainChristmasDDayDiscount(order)).isEqualTo(discount);
     }
 
     @Test
@@ -38,7 +38,7 @@ class DiscountTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
         final Order order = new Order(new Day(3), orderMenus);
 
-        Assertions.assertThat(Discount.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 10);
+        Assertions.assertThat(Event.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 10);
     }
 
     @Test
@@ -49,7 +49,7 @@ class DiscountTest {
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
         final Order order = new Order(new Day(1), orderMenus);
 
-        Assertions.assertThat(Discount.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 7);
+        Assertions.assertThat(Event.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 7);
     }
 
     @Test
@@ -59,18 +59,26 @@ class DiscountTest {
         orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(7));
         final Order order = new Order(new Day(3), orderMenus);
 
-        Assertions.assertThat(Discount.obtainStarDiscount(order)).isEqualTo(1000);
+        Assertions.assertThat(Event.obtainStarDiscount(order)).isEqualTo(1000);
     }
 
     @Test
     @DisplayName("할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정한다.")
     void checkChampagnePresent() {
-        Assertions.assertThat(Discount.isPossibleGetChampagne(120_000)).isEqualTo(true);
+        Assertions.assertThat(Event.isPossibleGetChampagne(120_000)).isEqualTo(true);
     }
 
     @Test
     @DisplayName("할인 전 총주문 금액이 12만 원 미만일 때, 샴페인을 증정하지 않는다.")
     void checkNoChampagnePresent() {
-        Assertions.assertThat(Discount.isPossibleGetChampagne(119_999)).isEqualTo(false);
+        Assertions.assertThat(Event.isPossibleGetChampagne(119_999)).isEqualTo(false);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"9_999, false", "10_000, true"})
+    @DisplayName("총 주문 금액 10,000원 이상부터 위의 이벤트가 적용된다.")
+    void check(Integer totalOrderPrice, Boolean applyResult) {
+        Assertions.assertThat(EventApplyer.isPossibleEvent(totalOrderPrice)).isEqualTo(applyResult);
+
     }
 }
