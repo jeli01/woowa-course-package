@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.List;
+
 public class Day {
     public static final String DAY_RANGE_ERROR = "날짜는 1이상 31이하의 정수여야 합니다.";
     private static final Integer LOWER_BOUND_DAY = 1;
@@ -27,5 +29,22 @@ public class Day {
 
     public Integer obtainDifferenceDay(Day compare) {
         return Math.abs(day - compare.day);
+    }
+
+    public boolean isWeekend() {
+        List<Day> weekends = EventDayProvider.obtainWeekends();
+        if (weekends.contains(new Day(day))) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        Day product = (Day) object;
+        if (product.day == this.day) {
+            return true;
+        }
+        return false;
     }
 }

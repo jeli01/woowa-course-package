@@ -29,4 +29,26 @@ class DiscountTest {
 
         Assertions.assertThat(Discount.obtainChristmasDDayDiscount(order)).isEqualTo(discount);
     }
+
+    @Test
+    @DisplayName("평일에는 디저트 메뉴를 메뉴 1개당 2,023원 할인한다.")
+    void checkWeekdayDiscount() {
+        final OrderMenus orderMenus = new OrderMenus();
+        orderMenus.addMenu(Menu.ICE_CREAM, new MenuCount(10));
+        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
+        final Order order = new Order(new Day(3), orderMenus);
+
+        Assertions.assertThat(Discount.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 10);
+    }
+
+    @Test
+    @DisplayName("주말에는 메인 메뉴를 메뉴 1개당 2,023원 할인한다.")
+    void checkWeekendDiscount() {
+        final OrderMenus orderMenus = new OrderMenus();
+        orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(7));
+        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
+        final Order order = new Order(new Day(1), orderMenus);
+
+        Assertions.assertThat(Discount.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 7);
+    }
 }

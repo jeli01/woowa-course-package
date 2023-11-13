@@ -47,4 +47,11 @@ public enum Menu {
         }
         return false;
     }
+
+    public boolean isCategory(MenuCategory menuCategory) {
+        if (category == menuCategory) {
+            return true;
+        }
+        return false;
+    }
 }

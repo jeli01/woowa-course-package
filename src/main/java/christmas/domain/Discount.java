@@ -3,7 +3,8 @@ package christmas.domain;
 public class Discount {
     private static final Integer CHRISTMAS_D_DAY_FIRST = 1;
     private static final Integer CHRISTMAS_D_DAY_LAST = 25;
-    private static final Integer INITIAL_D_DAY_DISCOUNT = 1000;
+    private static final Integer INITIAL_D_DAY_DISCOUNT = 1_000;
+    private static final Integer WEEK_KIND_DISCOUNT_UNIT = 2_023;
 
     public static Integer obtainChristmasDDayDiscount(Order order) {
         final Integer discount = INITIAL_D_DAY_DISCOUNT;
@@ -14,5 +15,17 @@ public class Discount {
 
         extraDiscount += 100 * order.obtainDifferenceDay(new Day(CHRISTMAS_D_DAY_FIRST));
         return discount + extraDiscount;
+    }
+
+    public static Integer obtainWeekKindDiscount(Order order) {
+        Integer discount = 0;
+        if (order.isWeekendDay()) {
+            final Integer count = order.obtainMenuCategoryCount(MenuCategory.MAIN);
+            discount += WEEK_KIND_DISCOUNT_UNIT * count;
+            return discount;
+        }
+        final Integer count = order.obtainMenuCategoryCount(MenuCategory.DESSERT);
+        discount += WEEK_KIND_DISCOUNT_UNIT * count;
+        return discount;
     }
 }

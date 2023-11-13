@@ -30,4 +30,12 @@ public class Order {
     public Integer obtainDifferenceDay(Day day) {
         return visitDay.obtainDifferenceDay(day);
     }
+
+    public boolean isWeekendDay() {
+        return visitDay.isWeekend();
+    }
+
+    public Integer obtainMenuCategoryCount(MenuCategory menuCategory) {
+        return orderMenus.obtainMenuCategoryCount(menuCategory);
+    }
 }

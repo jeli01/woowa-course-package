@@ -44,4 +44,16 @@ public class OrderMenus {
 
         return totalCount;
     }
+
+    public Integer obtainMenuCategoryCount(MenuCategory menuCategory) {
+        Integer count = 0;
+        Set<Menu> menus = orderMenus.keySet();
+        for (Menu menu : menus) {
+            if (menu.isCategory(menuCategory)) {
+                MenuCount menuCount = orderMenus.get(menu);
+                count += menuCount.getValue();
+            }
+        }
+        return count;
+    }
 }
