@@ -19,7 +19,7 @@ public enum Menu {
     RED_WINE(DRINK, "레드와인", 60_000),
     CHAMPAGNE(DRINK, "샴페인", 25_000);
 
-    public static final String NOT_EXISTS_ERROR = "해당 문자열은 메뉴의 종류가 아닙니다.";
+    private static final String NOT_EXISTS_ERROR = "해당 문자열은 메뉴의 종류가 아닙니다.";
 
     private final MenuCategory category;
     private final String name;
@@ -31,7 +31,7 @@ public enum Menu {
         this.price = price;
     }
 
-    public static Menu translateStringToMenu(String input) {
+    public static Menu translate(String input) {
         Menu[] values = Menu.values();
         for (Menu value : values) {
             if (input.equals(value.name)) {

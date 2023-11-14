@@ -3,20 +3,20 @@ package christmas.domain;
 public enum Badge {
     STAR(5_000), TREE(10_000), SANTA(20_000);
 
-    private final Integer min_range;
+    private final Integer minRange;
 
-    Badge(Integer min_range) {
-        this.min_range = min_range;
+    Badge(Integer minRange) {
+        this.minRange = minRange;
     }
 
-    public static Badge obtainBadgeByPrice(Integer totalBenefitPrice) {
-        if (totalBenefitPrice < STAR.min_range) {
+    public static Badge obtainBadge(Integer totalBenefitPrice) {
+        if (totalBenefitPrice < STAR.minRange) {
             return null;
         }
-        if (totalBenefitPrice < TREE.min_range) {
+        if (totalBenefitPrice < TREE.minRange) {
             return STAR;
         }
-        if (totalBenefitPrice < SANTA.min_range) {
+        if (totalBenefitPrice < SANTA.minRange) {
             return TREE;
         }
         return SANTA;

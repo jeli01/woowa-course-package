@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import static christmas.domain.MenuCount.COUNT_ERROR;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,6 +21,6 @@ class MenuCountTest {
     void checkInMenu(Integer count) {
         Assertions.assertThatThrownBy(() -> {
             new MenuCount(count);
-        }).hasMessageContaining(COUNT_ERROR);
+        }).hasMessageContaining("메뉴의 개수는 1이상 이어야 합니다.");
     }
 }

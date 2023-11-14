@@ -10,39 +10,39 @@ public class Event {
 
     public static Integer obtainChristmasDDayDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplyer.isPossibleEvent(totalOrderPrice)) {
+        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
             return 0;
         }
 
         final Integer discount = INITIAL_D_DAY_DISCOUNT;
         Integer extraDiscount = 0;
-        if (order.isDayBiggerThan(new Day(CHRISTMAS_D_DAY_LAST))) {
+        if (order.isBiggerDay(new Day(CHRISTMAS_D_DAY_LAST))) {
             return 0;
         }
-        extraDiscount += 100 * order.obtainDifferenceDay(new Day(CHRISTMAS_D_DAY_FIRST));
+        extraDiscount += 100 * order.obtainDayDifference(new Day(CHRISTMAS_D_DAY_FIRST));
         return discount + extraDiscount;
     }
 
     public static Integer obtainWeekKindDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplyer.isPossibleEvent(totalOrderPrice)) {
+        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
             return 0;
         }
 
         Integer discount = 0;
         if (order.isWeekendDay()) {
-            final Integer count = order.obtainMenuCategoryCount(MenuCategory.MAIN);
+            Integer count = order.obtainMenuCategoryCount(MenuCategory.MAIN);
             discount += WEEK_KIND_DISCOUNT_UNIT * count;
             return discount;
         }
-        final Integer count = order.obtainMenuCategoryCount(MenuCategory.DESSERT);
+        Integer count = order.obtainMenuCategoryCount(MenuCategory.DESSERT);
         discount += WEEK_KIND_DISCOUNT_UNIT * count;
         return discount;
     }
 
     public static Integer obtainStarDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplyer.isPossibleEvent(totalOrderPrice)) {
+        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
             return 0;
         }
 
@@ -61,13 +61,13 @@ public class Event {
 
     public static Badge obtainBadge(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplyer.isPossibleEvent(totalOrderPrice)) {
+        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
             return null;
         }
 
-        final Integer totalBenefitPrice = obtainTotalBenefitPrice(order);
+        Integer totalBenefitPrice = obtainTotalBenefitPrice(order);
 
-        return Badge.obtainBadgeByPrice(totalBenefitPrice);
+        return Badge.obtainBadge(totalBenefitPrice);
     }
 
     public static Integer obtainTotalBenefitPrice(Order order) {
@@ -79,11 +79,11 @@ public class Event {
     }
 
     public static Integer obtainTotalDiscount(Order order) {
-        final Integer totalOrderPrice = order.obtainTotalPrice();
-        final Integer ChristmasDDayDiscount = obtainChristmasDDayDiscount(order);
-        final Integer weekKindDiscount = obtainWeekKindDiscount(order);
-        final Integer starDiscount = obtainStarDiscount(order);
-        final Integer totalDiscount = ChristmasDDayDiscount + weekKindDiscount + starDiscount;
+        Integer totalOrderPrice = order.obtainTotalPrice();
+        Integer ChristmasDDayDiscount = obtainChristmasDDayDiscount(order);
+        Integer weekKindDiscount = obtainWeekKindDiscount(order);
+        Integer starDiscount = obtainStarDiscount(order);
+        Integer totalDiscount = ChristmasDDayDiscount + weekKindDiscount + starDiscount;
         return Math.min(totalOrderPrice, totalDiscount);
     }
 }

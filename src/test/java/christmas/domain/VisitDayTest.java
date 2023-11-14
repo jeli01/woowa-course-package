@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import static christmas.domain.Day.DAY_RANGE_ERROR;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,6 +22,6 @@ class VisitDayTest {
     void validateDayRange(Integer day) {
         Assertions.assertThatThrownBy(() -> {
             new Day(day);
-        }).hasMessageContaining(DAY_RANGE_ERROR);
+        }).hasMessageContaining("날짜는 1이상 31이하의 정수여야 합니다.");
     }
 }

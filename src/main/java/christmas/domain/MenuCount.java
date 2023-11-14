@@ -1,26 +1,26 @@
 package christmas.domain;
 
 public class MenuCount {
-    public static final String COUNT_ERROR = "메뉴의 개수는 1이상 이어야 합니다.";
+    private static final String RANGE_ERROR = "메뉴의 개수는 1이상 이어야 합니다.";
 
-    private final Integer value;
+    private final Integer count;
 
-    public MenuCount(Integer value) {
-        validateCount(value);
-        this.value = value;
+    public MenuCount(Integer count) {
+        validateCount(count);
+        this.count = count;
     }
 
-    public void validateCount(Integer value) {
-        if (value <= 0) {
-            throw new IllegalArgumentException(COUNT_ERROR);
+    public void validateCount(Integer count) {
+        if (count <= 0) {
+            throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
 
     public Integer obtainSumWithCount(Integer input) {
-        return input + value;
+        return input + count;
     }
 
     public Integer obtainPriceMultiplyCount(Integer price) {
-        return price * value;
+        return price * count;
     }
 }

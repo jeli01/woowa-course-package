@@ -33,10 +33,10 @@ class EventTest {
     @Test
     @DisplayName("평일에는 디저트 메뉴를 메뉴 1개당 2,023원 할인한다.")
     void checkWeekdayDiscount() {
-        final OrderMenus orderMenus = new OrderMenus();
+        OrderMenus orderMenus = new OrderMenus();
         orderMenus.addMenu(Menu.ICE_CREAM, new MenuCount(10));
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
-        final Order order = new Order(new Day(3), orderMenus);
+        Order order = new Order(new Day(3), orderMenus);
 
         Assertions.assertThat(Event.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 10);
     }
@@ -44,10 +44,10 @@ class EventTest {
     @Test
     @DisplayName("주말에는 메인 메뉴를 메뉴 1개당 2,023원 할인한다.")
     void checkWeekendDiscount() {
-        final OrderMenus orderMenus = new OrderMenus();
+        OrderMenus orderMenus = new OrderMenus();
         orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(7));
         orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
-        final Order order = new Order(new Day(1), orderMenus);
+        Order order = new Order(new Day(1), orderMenus);
 
         Assertions.assertThat(Event.obtainWeekKindDiscount(order)).isEqualTo(2_023 * 7);
     }
@@ -55,9 +55,9 @@ class EventTest {
     @Test
     @DisplayName("이벤트 달력에 별이 있으면 총주문 금액에서 1,000원 할인한다.")
     void checkStarDayDiscount() {
-        final OrderMenus orderMenus = new OrderMenus();
+        OrderMenus orderMenus = new OrderMenus();
         orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(7));
-        final Order order = new Order(new Day(3), orderMenus);
+        Order order = new Order(new Day(3), orderMenus);
 
         Assertions.assertThat(Event.obtainStarDiscount(order)).isEqualTo(1000);
     }
@@ -78,20 +78,20 @@ class EventTest {
     @CsvSource(value = {"9_999, false", "10_000, true"})
     @DisplayName("총 주문 금액 10,000원 이상부터 위의 이벤트가 적용된다.")
     void checkMore10_000PossibleEvent(Integer totalOrderPrice, Boolean applyResult) {
-        Assertions.assertThat(EventApplyer.isPossibleEvent(totalOrderPrice)).isEqualTo(applyResult);
+        Assertions.assertThat(EventApplier.isPossibleDiscountEvent(totalOrderPrice)).isEqualTo(applyResult);
 
     }
 
     @Test
     @DisplayName("총 할인 금액을 가져온다.")
     void checkDiscountIsLessThanPayment() {
-        final OrderMenus orderMenus = new OrderMenus();
+        OrderMenus orderMenus = new OrderMenus();
         orderMenus.addMenu(Menu.CHOCOLATE_CAKE, new MenuCount(10));
-        final Order order = new Order(new Day(3), orderMenus);
+        Order order = new Order(new Day(3), orderMenus);
 
-        final Integer christmasDDayDiscount = Event.obtainChristmasDDayDiscount(order);
-        final Integer starDiscount = Event.obtainStarDiscount(order);
-        final Integer weekKindDiscount = Event.obtainWeekKindDiscount(order);
+        Integer christmasDDayDiscount = Event.obtainChristmasDDayDiscount(order);
+        Integer starDiscount = Event.obtainStarDiscount(order);
+        Integer weekKindDiscount = Event.obtainWeekKindDiscount(order);
         Assertions.assertThat(Event.obtainTotalDiscount(order))
                 .isEqualTo(christmasDDayDiscount + starDiscount + weekKindDiscount);
     }

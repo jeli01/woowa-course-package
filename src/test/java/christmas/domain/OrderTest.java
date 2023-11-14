@@ -1,8 +1,5 @@
 package christmas.domain;
 
-import static christmas.domain.Order.DRINK_ONLY_ERROR;
-import static christmas.domain.Order.MAX_ORDER_COUNT_ERROR;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +26,7 @@ class OrderTest {
 
         Assertions.assertThatCode(() -> {
             new Order(new Day(10), orderMenus);
-        }).hasMessageContaining(DRINK_ONLY_ERROR);
+        }).hasMessageContaining("음료만 주문할 수는 없습니다.");
     }
 
     @Test
@@ -41,6 +38,6 @@ class OrderTest {
 
         Assertions.assertThatCode(() -> {
             new Order(new Day(10), orderMenus);
-        }).hasMessageContaining(MAX_ORDER_COUNT_ERROR);
+        }).hasMessageContaining("총 주문 메뉴를 21개를 넘길 수 없습니다.");
     }
 }

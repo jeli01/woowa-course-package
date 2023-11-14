@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import static christmas.domain.OrderMenus.MENU_DUPLICATE_ERROR;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +24,6 @@ class OrderMenusTest {
 
         Assertions.assertThatThrownBy(() -> {
             orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(5));
-        }).hasMessageContaining(MENU_DUPLICATE_ERROR);
+        }).hasMessageContaining("메뉴는 중복 주문할 수 없습니다.");
     }
 }

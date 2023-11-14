@@ -1,8 +1,8 @@
 package christmas.domain;
 
 public class Order {
-    public static final String DRINK_ONLY_ERROR = "음료만 주문할 수는 없습니다.";
-    public static final String MAX_ORDER_COUNT_ERROR = "총 주문 메뉴를 21개를 넘길 수 없습니다.";
+    private static final String DRINK_ONLY_ERROR = "음료만 주문할 수는 없습니다.";
+    private static final String MAX_ORDER_COUNT_ERROR = "총 주문 메뉴를 21개를 넘길 수 없습니다.";
     private static final Integer MAX_ORDER_COUNT = 21;
 
     private final Day visitDay;
@@ -15,7 +15,7 @@ public class Order {
     }
 
     private void validateMenusDiversity(OrderMenus orderMenus) {
-        if (orderMenus.obtainOrderMenuTotalCount() > MAX_ORDER_COUNT) {
+        if (orderMenus.obtainMenuTotalCount() > MAX_ORDER_COUNT) {
             throw new IllegalArgumentException(MAX_ORDER_COUNT_ERROR);
         }
         if (orderMenus.isOnlyDrink()) {
@@ -23,12 +23,12 @@ public class Order {
         }
     }
 
-    public boolean isDayBiggerThan(Day day) {
-        return visitDay.isBiggerThan(day);
+    public boolean isBiggerDay(Day day) {
+        return visitDay.isBigger(day);
     }
 
-    public Integer obtainDifferenceDay(Day day) {
-        return visitDay.obtainDifferenceDay(day);
+    public Integer obtainDayDifference(Day day) {
+        return visitDay.obtainDifference(day);
     }
 
     public boolean isWeekendDay() {
@@ -36,7 +36,7 @@ public class Order {
     }
 
     public Integer obtainMenuCategoryCount(MenuCategory menuCategory) {
-        return orderMenus.obtainMenuCategoryCount(menuCategory);
+        return orderMenus.obtainCategoryCount(menuCategory);
     }
 
     public boolean isStarDay() {
