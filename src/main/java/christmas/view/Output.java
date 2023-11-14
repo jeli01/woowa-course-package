@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.domain.Gift.CHAMPAGNE;
+
 import christmas.domain.Menu;
 import christmas.domain.MenuCount;
 import java.text.DecimalFormat;
@@ -7,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Output {
+    private static final DecimalFormat df = new DecimalFormat("###,###");
 
     public static void printProgramIntroduction() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
@@ -28,7 +31,6 @@ public class Output {
 
     public static void printTotalOrderPrice(Integer totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
-        DecimalFormat df = new DecimalFormat("###,###");
         String money = df.format(totalPrice);
         System.out.println(money);
         System.out.println();
@@ -41,5 +43,33 @@ public class Output {
             return;
         }
         System.out.println("없음");
+    }
+
+    public static void printChristmasDDayDiscount(Integer discount) {
+        if (discount <= 0) {
+            return;
+        }
+        System.out.println("크리스마스 디데이 할인: -" + df.format(discount) + "원");
+    }
+
+    public static void printWeekDiscount(Integer discount) {
+        if (discount <= 0) {
+            return;
+        }
+        System.out.println("평일 할인: -" + df.format(discount) + "원");
+    }
+
+    public static void printSpecialDiscount(Integer discount) {
+        if (discount <= 0) {
+            return;
+        }
+        System.out.println("크리스마스 디데이 할인: -" + df.format(discount) + "원");
+    }
+
+    public static void printGiftEvent(Boolean isPossible) {
+        if (isPossible == false) {
+            return;
+        }
+        System.out.println("크리스마스 디데이 할인: -" + df.format(CHAMPAGNE.getPrice()) + "원");
     }
 }

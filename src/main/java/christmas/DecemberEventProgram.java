@@ -57,4 +57,17 @@ public class DecemberEventProgram {
         Output.printGiftMenu(isPossible);
     }
 
+    public void printBenefitList() {
+        System.out.println("<혜택 내역>");
+        if (Event.obtainTotalDiscount(order) == 0 && !Event.isPossibleGetChampagne(order.obtainTotalPrice())) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
+        Output.printChristmasDDayDiscount(Event.obtainChristmasDDayDiscount(order));
+        Output.printWeekDiscount(Event.obtainWeekKindDiscount(order));
+        Output.printSpecialDiscount(Event.obtainStarDiscount(order));
+        Output.printGiftEvent(Event.isPossibleGetChampagne(order.obtainTotalPrice()));
+        System.out.println();
+    }
 }

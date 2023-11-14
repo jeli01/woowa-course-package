@@ -10,5 +10,6 @@ public class Application {
         program.printOrderMenu();
         program.printTotalOrderPrice();
         program.printGiftMenu();
+        program.printBenefitList();
     }
 }
