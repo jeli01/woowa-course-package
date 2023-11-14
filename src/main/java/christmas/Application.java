@@ -13,5 +13,6 @@ public class Application {
         program.printBenefitList();
         program.printTotalBenefit();
         program.printPayment();
+        program.printBadge();
     }
 }

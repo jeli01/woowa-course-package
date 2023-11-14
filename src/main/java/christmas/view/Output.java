@@ -2,6 +2,7 @@ package christmas.view;
 
 import static christmas.domain.Gift.CHAMPAGNE;
 
+import christmas.domain.Badge;
 import christmas.domain.Menu;
 import christmas.domain.MenuCount;
 import java.text.DecimalFormat;
@@ -84,5 +85,22 @@ public class Output {
     public static void printPayment(Integer payment) {
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(df.format(payment) + "원");
+    }
+
+    public static void printBadge(Badge badge) {
+        System.out.println("<12월 이벤트 배지>");
+        if (badge == Badge.STAR) {
+            System.out.println("별");
+            return;
+        }
+        if (badge == Badge.TREE) {
+            System.out.println("트리");
+            return;
+        }
+        if (badge == Badge.SANTA) {
+            System.out.println("산타");
+            return;
+        }
+        System.out.println("없음");
     }
 }

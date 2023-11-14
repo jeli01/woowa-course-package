@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.domain.Badge;
 import christmas.domain.Day;
 import christmas.domain.Event;
 import christmas.domain.Order;
@@ -78,5 +79,10 @@ public class DecemberEventProgram {
 
     public void printPayment() {
         Output.printPayment(order.obtainTotalPrice() - Event.obtainTotalDiscount(order));
+    }
+
+    public void printBadge() {
+        Badge badge = Badge.obtainBadge(Event.obtainTotalBenefitPrice(order));
+        Output.printBadge(badge);
     }
 }
