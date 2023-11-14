@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.domain.Day;
+import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.domain.OrderMenus;
 import christmas.view.Input;
@@ -50,4 +51,10 @@ public class DecemberEventProgram {
         Integer totalPrice = order.obtainTotalPrice();
         Output.printTotalOrderPrice(totalPrice);
     }
+
+    public void printGiftMenu() {
+        Boolean isPossible = Event.isPossibleGetChampagne(order.obtainTotalPrice());
+        Output.printGiftMenu(isPossible);
+    }
+
 }

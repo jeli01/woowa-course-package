@@ -9,5 +9,6 @@ public class Application {
         program.printEventBenefitIntroduction();
         program.printOrderMenu();
         program.printTotalOrderPrice();
+        program.printGiftMenu();
     }
 }

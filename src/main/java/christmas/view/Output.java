@@ -33,4 +33,13 @@ public class Output {
         System.out.println(money);
         System.out.println();
     }
+
+    public static void printGiftMenu(Boolean isPossible) {
+        System.out.println("<증정 메뉴>");
+        if (isPossible) {
+            System.out.println("샴페인 1개");
+            return;
+        }
+        System.out.println("없음");
+    }
 }
