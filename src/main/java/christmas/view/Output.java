@@ -33,7 +33,7 @@ public class Output {
     public static void printTotalOrderPrice(Integer totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
         String money = df.format(totalPrice);
-        System.out.println(money);
+        System.out.println(money + "원");
         System.out.println();
     }
 

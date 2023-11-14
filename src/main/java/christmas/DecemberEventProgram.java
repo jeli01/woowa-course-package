@@ -56,6 +56,7 @@ public class DecemberEventProgram {
     public void printGiftMenu() {
         Boolean isPossible = Event.isPossibleGetChampagne(order.obtainTotalPrice());
         Output.printGiftMenu(isPossible);
+        System.out.println();
     }
 
     public void printBenefitList() {
@@ -79,6 +80,7 @@ public class DecemberEventProgram {
 
     public void printPayment() {
         Output.printPayment(order.obtainTotalPrice() - Event.obtainTotalDiscount(order));
+        System.out.println();
     }
 
     public void printBadge() {
