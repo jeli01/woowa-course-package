@@ -72,4 +72,17 @@ public class Output {
         }
         System.out.println("크리스마스 디데이 할인: -" + df.format(CHAMPAGNE.getPrice()) + "원");
     }
+
+    public static void printTotalBenefit(Integer totalBenefit) {
+        System.out.println("<총혜택 금액>");
+        if (totalBenefit > 0) {
+            System.out.print("-");
+        }
+        System.out.println(df.format(totalBenefit) + "원");
+    }
+
+    public static void printPayment(Integer payment) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(df.format(payment) + "원");
+    }
 }

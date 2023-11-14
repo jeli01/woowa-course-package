@@ -11,5 +11,7 @@ public class Application {
         program.printTotalOrderPrice();
         program.printGiftMenu();
         program.printBenefitList();
+        program.printTotalBenefit();
+        program.printPayment();
     }
 }

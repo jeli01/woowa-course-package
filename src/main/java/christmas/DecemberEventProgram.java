@@ -70,4 +70,13 @@ public class DecemberEventProgram {
         Output.printGiftEvent(Event.isPossibleGetChampagne(order.obtainTotalPrice()));
         System.out.println();
     }
+
+    public void printTotalBenefit() {
+        Output.printTotalBenefit(Event.obtainTotalBenefitPrice(order));
+        System.out.println();
+    }
+
+    public void printPayment() {
+        Output.printPayment(order.obtainTotalPrice() - Event.obtainTotalDiscount(order));
+    }
 }
