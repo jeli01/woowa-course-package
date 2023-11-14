@@ -65,12 +65,12 @@ public class Event {
             return null;
         }
 
-        final Integer totalBenefitPrice = obtainToTalBenefitPrice(order);
+        final Integer totalBenefitPrice = obtainTotalBenefitPrice(order);
 
         return Badge.obtainBadgeByPrice(totalBenefitPrice);
     }
 
-    public static Integer obtainToTalBenefitPrice(Order order) {
+    public static Integer obtainTotalBenefitPrice(Order order) {
         Integer totalBenefitPrice = 0;
         totalBenefitPrice += obtainChristmasDDayDiscount(order);
         totalBenefitPrice += obtainWeekKindDiscount(order);
@@ -78,4 +78,12 @@ public class Event {
         return totalBenefitPrice;
     }
 
+    public static Integer obtainTotalDiscount(Order order) {
+        final Integer totalOrderPrice = order.obtainTotalPrice();
+        final Integer ChristmasDDayDiscount = obtainChristmasDDayDiscount(order);
+        final Integer weekKindDiscount = obtainWeekKindDiscount(order);
+        final Integer starDiscount = obtainStarDiscount(order);
+        final Integer totalDiscount = ChristmasDDayDiscount + weekKindDiscount + starDiscount;
+        return Math.min(totalOrderPrice, totalDiscount);
+    }
 }

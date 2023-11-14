@@ -77,8 +77,22 @@ class EventTest {
     @ParameterizedTest
     @CsvSource(value = {"9_999, false", "10_000, true"})
     @DisplayName("총 주문 금액 10,000원 이상부터 위의 이벤트가 적용된다.")
-    void check(Integer totalOrderPrice, Boolean applyResult) {
+    void checkMore10_000PossibleEvent(Integer totalOrderPrice, Boolean applyResult) {
         Assertions.assertThat(EventApplyer.isPossibleEvent(totalOrderPrice)).isEqualTo(applyResult);
 
+    }
+
+    @Test
+    @DisplayName("총 할인 금액을 가져온다.")
+    void checkDiscountIsLessThanPayment() {
+        final OrderMenus orderMenus = new OrderMenus();
+        orderMenus.addMenu(Menu.CHOCOLATE_CAKE, new MenuCount(10));
+        final Order order = new Order(new Day(3), orderMenus);
+
+        final Integer christmasDDayDiscount = Event.obtainChristmasDDayDiscount(order);
+        final Integer starDiscount = Event.obtainStarDiscount(order);
+        final Integer weekKindDiscount = Event.obtainWeekKindDiscount(order);
+        Assertions.assertThat(Event.obtainTotalDiscount(order))
+                .isEqualTo(christmasDDayDiscount + starDiscount + weekKindDiscount);
     }
 }
