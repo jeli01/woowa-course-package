@@ -26,4 +26,15 @@ class OrderMenusTest {
             orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(5));
         }).hasMessageContaining("메뉴는 중복 주문할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("총 주문 메뉴의 수가 21개를 넘겼을 경우, 에러가 발생한다.")
+    void checkTotalMenuCount() {
+        OrderMenus orderMenus = new OrderMenus();
+        orderMenus.addMenu(Menu.CHAMPAGNE, new MenuCount(10));
+
+        Assertions.assertThatCode(() -> {
+            orderMenus.addMenu(Menu.RED_WINE, new MenuCount(12));
+        }).hasMessageContaining("총 주문 메뉴를 21개를 넘길 수 없습니다.");
+    }
 }

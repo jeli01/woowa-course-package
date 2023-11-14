@@ -90,4 +90,8 @@ public class Event {
         Integer totalDiscount = ChristmasDDayDiscount + weekKindDiscount + starDiscount;
         return Math.min(totalOrderPrice, totalDiscount);
     }
+
+    public static Boolean isPossibleBenefit(Order order) {
+        return Event.obtainTotalDiscount(order) == 0 && !Event.isPossibleGetChampagne(order.obtainTotalPrice());
+    }
 }

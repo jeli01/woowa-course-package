@@ -1,56 +1,40 @@
-package christmas;
+package christmas.controller;
 
 import christmas.domain.Badge;
 import christmas.domain.Day;
 import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.domain.OrderMenus;
-import christmas.view.Input;
 import christmas.view.Output;
+import christmas.view.RetryInput;
 
 public class DecemberEventProgram {
-    private Day visitDay;
-    private OrderMenus orderMenus;
     private Order order;
+
+    public void read() {
+        Day day = RetryInput.readVisitDay();
+        OrderMenus orderMenus = RetryInput.readMenu();
+        order = new Order(day, orderMenus);
+    }
 
     public void printIntroduction() {
         Output.printProgramIntroduction();
     }
 
-    public void readVisitDay() {
-        while (true) {
-            try {
-                visitDay = Input.readVisitDay();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-    }
-
-    public void readMenu() {
-        while (true) {
-            try {
-                orderMenus = Input.readMenu();
-                order = new Order(visitDay, orderMenus);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-    }
-
     public void printEventBenefitIntroduction() {
         Output.printEventBenefitIntroduction();
+        System.out.println();
     }
 
     public void printOrderMenu() {
-        Output.printOrderMenu(orderMenus.getOrderMenus());
+        Output.printOrderMenu(order.getOrderMenus().getOrderMenus());
+        System.out.println();
     }
 
     public void printTotalOrderPrice() {
         Integer totalPrice = order.obtainTotalPrice();
         Output.printTotalOrderPrice(totalPrice);
+        System.out.println();
     }
 
     public void printGiftMenu() {
@@ -60,9 +44,9 @@ public class DecemberEventProgram {
     }
 
     public void printBenefitList() {
-        System.out.println("<혜택 내역>");
-        if (Event.obtainTotalDiscount(order) == 0 && !Event.isPossibleGetChampagne(order.obtainTotalPrice())) {
-            System.out.println("없음");
+        Output.printBenefitTitle();
+        if (Event.isPossibleBenefit(order)) {
+            Output.printNon();
             System.out.println();
             return;
         }

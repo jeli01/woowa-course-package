@@ -18,7 +18,6 @@ public class Output {
 
     public static void printEventBenefitIntroduction() {
         System.out.println("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
-        System.out.println();
     }
 
     public static void printOrderMenu(Map<Menu, MenuCount> orderMenus) {
@@ -27,14 +26,12 @@ public class Output {
         for (Menu menu : menus) {
             System.out.println(menu.getName() + " " + orderMenus.get(menu).getCount() + "개");
         }
-        System.out.println();
     }
 
     public static void printTotalOrderPrice(Integer totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
         String money = df.format(totalPrice);
         System.out.println(money + "원");
-        System.out.println();
     }
 
     public static void printGiftMenu(Boolean isPossible) {
@@ -44,6 +41,10 @@ public class Output {
             return;
         }
         System.out.println("없음");
+    }
+
+    public static void printBenefitTitle() {
+        System.out.println("<혜택 내역>");
     }
 
     public static void printChristmasDDayDiscount(Integer discount) {
@@ -101,6 +102,10 @@ public class Output {
             System.out.println("산타");
             return;
         }
+        System.out.println("없음");
+    }
+
+    public static void printNon() {
         System.out.println("없음");
     }
 }

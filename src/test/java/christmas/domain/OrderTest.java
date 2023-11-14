@@ -28,16 +28,4 @@ class OrderTest {
             new Order(new Day(10), orderMenus);
         }).hasMessageContaining("음료만 주문할 수는 없습니다.");
     }
-
-    @Test
-    @DisplayName("총 주문 메뉴의 수가 21개를 넘겼을 경우, 에러가 발생한다.")
-    void checkTotalMenuCount() {
-        OrderMenus orderMenus = new OrderMenus();
-        orderMenus.addMenu(Menu.CHAMPAGNE, new MenuCount(10));
-        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(15));
-
-        Assertions.assertThatCode(() -> {
-            new Order(new Day(10), orderMenus);
-        }).hasMessageContaining("총 주문 메뉴를 21개를 넘길 수 없습니다.");
-    }
 }
