@@ -1,12 +1,13 @@
 package christmas.domain;
 
+import static christmas.domain.Gift.CHAMPAGNE;
+
 public class Event {
     private static final Integer CHRISTMAS_D_DAY_FIRST = 1;
     private static final Integer CHRISTMAS_D_DAY_LAST = 25;
     private static final Integer INITIAL_D_DAY_DISCOUNT = 1_000;
     private static final Integer WEEK_KIND_DISCOUNT_UNIT = 2_023;
     private static final Integer STAR_DAY_DISCOUNT = 1_000;
-    private static final Integer GET_CHAMPAGNE_PRICE = 120_000;
 
     public static Integer obtainChristmasDDayDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
@@ -53,7 +54,7 @@ public class Event {
     }
 
     public static boolean isPossibleGetChampagne(Integer totalOrderPrice) {
-        if (totalOrderPrice >= GET_CHAMPAGNE_PRICE) {
+        if (totalOrderPrice >= CHAMPAGNE.getOrderPriceToGet()) {
             return true;
         }
         return false;
@@ -75,6 +76,9 @@ public class Event {
         totalBenefitPrice += obtainChristmasDDayDiscount(order);
         totalBenefitPrice += obtainWeekKindDiscount(order);
         totalBenefitPrice += obtainStarDiscount(order);
+        if (Event.isPossibleGetChampagne(order.obtainTotalPrice())) {
+            totalBenefitPrice += CHAMPAGNE.getPrice();
+        }
         return totalBenefitPrice;
     }
 
