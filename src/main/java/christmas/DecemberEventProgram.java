@@ -45,4 +45,9 @@ public class DecemberEventProgram {
     public void printOrderMenu() {
         Output.printOrderMenu(orderMenus.getOrderMenus());
     }
+
+    public void printTotalOrderPrice() {
+        Integer totalPrice = order.obtainTotalPrice();
+        Output.printTotalOrderPrice(totalPrice);
+    }
 }

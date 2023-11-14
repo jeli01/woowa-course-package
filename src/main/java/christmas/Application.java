@@ -8,5 +8,6 @@ public class Application {
         program.readMenu();
         program.printEventBenefitIntroduction();
         program.printOrderMenu();
+        program.printTotalOrderPrice();
     }
 }

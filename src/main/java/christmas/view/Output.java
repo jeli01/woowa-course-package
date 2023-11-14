@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.domain.Menu;
 import christmas.domain.MenuCount;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,6 +23,14 @@ public class Output {
         for (Menu menu : menus) {
             System.out.println(menu.getName() + " " + orderMenus.get(menu).getCount() + "개");
         }
+        System.out.println();
+    }
+
+    public static void printTotalOrderPrice(Integer totalPrice) {
+        System.out.println("<할인 전 총주문 금액>");
+        DecimalFormat df = new DecimalFormat("###,###");
+        String money = df.format(totalPrice);
+        System.out.println(money);
         System.out.println();
     }
 }
