@@ -23,4 +23,8 @@ public class MenuCount {
     public Integer obtainPriceMultiplyCount(Integer price) {
         return price * count;
     }
+
+    public Integer getCount() {
+        return count;
+    }
 }

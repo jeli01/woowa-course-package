@@ -67,4 +67,8 @@ public class OrderMenus {
         }
         return totalPrice;
     }
+
+    public Map<Menu, MenuCount> getOrderMenus() {
+        return orderMenus;
+    }
 }

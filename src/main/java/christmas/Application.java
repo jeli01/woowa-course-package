@@ -6,5 +6,7 @@ public class Application {
         program.printIntroduction();
         program.readVisitDay();
         program.readMenu();
+        program.printEventBenefitIntroduction();
+        program.printOrderMenu();
     }
 }

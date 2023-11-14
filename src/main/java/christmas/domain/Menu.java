@@ -59,4 +59,7 @@ public enum Menu {
         return count.obtainPriceMultiplyCount(price);
     }
 
+    public String getName() {
+        return name;
+    }
 }

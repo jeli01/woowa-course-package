@@ -2,15 +2,17 @@ package christmas;
 
 import christmas.domain.Day;
 import christmas.domain.Order;
+import christmas.domain.OrderMenus;
 import christmas.view.Input;
 import christmas.view.Output;
 
 public class DecemberEventProgram {
     private Day visitDay;
+    private OrderMenus orderMenus;
     private Order order;
 
     public void printIntroduction() {
-        Output.printIntroduction();
+        Output.printProgramIntroduction();
     }
 
     public void readVisitDay() {
@@ -27,11 +29,20 @@ public class DecemberEventProgram {
     public void readMenu() {
         while (true) {
             try {
-                order = new Order(visitDay, Input.readMenu());
+                orderMenus = Input.readMenu();
+                order = new Order(visitDay, orderMenus);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+    }
+
+    public void printEventBenefitIntroduction() {
+        Output.printEventBenefitIntroduction();
+    }
+
+    public void printOrderMenu() {
+        Output.printOrderMenu(orderMenus.getOrderMenus());
     }
 }
