@@ -25,14 +25,18 @@ public class Input {
         OrderMenus orderMenus = new OrderMenus();
         try {
             String[] menuAndCounts = line.split(",");
-            for (String menuAndCount : menuAndCounts) {
-                String[] menuOrCount = menuAndCount.split("-");
-                validateLength(menuOrCount);
-                orderMenus.addMenu(Menu.translate(menuOrCount[0]), new MenuCount(Integer.parseInt(menuOrCount[1])));
-            }
+            fillOrderMenus(orderMenus, menuAndCounts);
             return orderMenus;
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private static void fillOrderMenus(OrderMenus orderMenus, String[] menuAndCounts) {
+        for (String menuAndCount : menuAndCounts) {
+            String[] menuOrCount = menuAndCount.split("-");
+            validateLength(menuOrCount);
+            orderMenus.addMenu(Menu.translate(menuOrCount[0]), new MenuCount(Integer.parseInt(menuOrCount[1])));
         }
     }
 

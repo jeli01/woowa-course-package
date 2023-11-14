@@ -63,8 +63,6 @@ public class Output {
             return;
         }
         System.out.println("평일 할인: -" + df.format(discount) + "원");
-
-
     }
 
     public static void printSpecialDiscount(Integer discount) {
