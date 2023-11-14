@@ -54,25 +54,31 @@ public class Output {
         System.out.println("크리스마스 디데이 할인: -" + df.format(discount) + "원");
     }
 
-    public static void printWeekDiscount(Integer discount) {
+    public static void printWeekDiscount(Boolean isWeekend, Integer discount) {
         if (discount <= 0) {
             return;
         }
+        if (isWeekend == true) {
+            System.out.println("주말 할인: -" + df.format(discount) + "원");
+            return;
+        }
         System.out.println("평일 할인: -" + df.format(discount) + "원");
+
+
     }
 
     public static void printSpecialDiscount(Integer discount) {
         if (discount <= 0) {
             return;
         }
-        System.out.println("크리스마스 디데이 할인: -" + df.format(discount) + "원");
+        System.out.println("특별 할인: -" + df.format(discount) + "원");
     }
 
     public static void printGiftEvent(Boolean isPossible) {
         if (isPossible == false) {
             return;
         }
-        System.out.println("크리스마스 디데이 할인: -" + df.format(CHAMPAGNE.getPrice()) + "원");
+        System.out.println("증정 이벤트: -" + df.format(CHAMPAGNE.getPrice()) + "원");
     }
 
     public static void printTotalBenefit(Integer totalBenefit) {

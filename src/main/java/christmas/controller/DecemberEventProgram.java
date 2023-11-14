@@ -51,7 +51,8 @@ public class DecemberEventProgram {
             return;
         }
         Output.printChristmasDDayDiscount(Event.obtainChristmasDDayDiscount(order));
-        Output.printWeekDiscount(Event.obtainWeekKindDiscount(order));
+        Boolean isWeekend = order.isWeekendDay();
+        Output.printWeekDiscount(isWeekend, Event.obtainWeekKindDiscount(order));
         Output.printSpecialDiscount(Event.obtainStarDiscount(order));
         Output.printGiftEvent(Event.isPossibleGetChampagne(order.obtainTotalPrice()));
         System.out.println();
