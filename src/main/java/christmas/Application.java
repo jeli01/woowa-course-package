@@ -5,5 +5,6 @@ public class Application {
         DecemberEventProgram program = new DecemberEventProgram();
         program.printIntroduction();
         program.readVisitDay();
+        program.readMenu();
     }
 }
