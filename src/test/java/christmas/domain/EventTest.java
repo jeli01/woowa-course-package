@@ -6,7 +6,7 @@ import static christmas.domain.Constant.STAR_DAY;
 import static christmas.domain.Constant.WEEKDAY;
 import static christmas.domain.Constant.WEEKEND;
 import static christmas.domain.Constant.WEEK_KIND_DISCOUNT_UNIT;
-import static christmas.domain.Event.isPossibleGetChampagne;
+import static christmas.domain.Event.getPossibleChampagneCount;
 import static christmas.domain.Event.obtainChristmasDDayDiscount;
 import static christmas.domain.Event.obtainStarDiscount;
 import static christmas.domain.Event.obtainTotalDiscount;
@@ -85,13 +85,13 @@ class EventTest {
     @Test
     @DisplayName("할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정한다.")
     void checkChampagnePresent() {
-        assertThat(isPossibleGetChampagne(120_000)).isEqualTo(true);
+        assertThat(getPossibleChampagneCount(120_000)).isEqualTo(1);
     }
 
     @Test
     @DisplayName("할인 전 총주문 금액이 12만 원 미만일 때, 샴페인을 증정하지 않는다.")
     void checkNoChampagnePresent() {
-        assertThat(isPossibleGetChampagne(119_999)).isEqualTo(false);
+        assertThat(getPossibleChampagneCount(119_999)).isEqualTo(0);
     }
 
     @ParameterizedTest

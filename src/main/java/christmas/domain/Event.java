@@ -54,11 +54,11 @@ public class Event {
         return 0;
     }
 
-    public static boolean isPossibleGetChampagne(Integer totalOrderPrice) {
+    public static Integer getPossibleChampagneCount(Integer totalOrderPrice) {
         if (totalOrderPrice >= CHAMPAGNE.getOrderPriceToGet()) {
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
 
     public static Badge obtainBadge(Order order) {
@@ -77,8 +77,9 @@ public class Event {
         totalBenefitPrice += obtainChristmasDDayDiscount(order);
         totalBenefitPrice += obtainWeekKindDiscount(order);
         totalBenefitPrice += obtainStarDiscount(order);
-        if (isPossibleGetChampagne(order.obtainTotalPrice())) {
-            totalBenefitPrice += CHAMPAGNE.getPrice();
+        Integer champagneCount = getPossibleChampagneCount(order.obtainTotalPrice());
+        if (champagneCount > 0) {
+            totalBenefitPrice += CHAMPAGNE.getPrice() * champagneCount;
         }
         return totalBenefitPrice;
     }
@@ -93,6 +94,6 @@ public class Event {
     }
 
     public static Boolean isPossibleBenefit(Order order) {
-        return obtainTotalDiscount(order) == 0 && !isPossibleGetChampagne(order.obtainTotalPrice());
+        return obtainTotalDiscount(order) > 0 && getPossibleChampagneCount(order.obtainTotalPrice()) > 0;
     }
 }

@@ -1,17 +1,18 @@
 package christmas.controller;
 
-import static christmas.domain.Badge.obtainBadge;
-import static christmas.domain.Event.isPossibleGetChampagne;
+import static christmas.domain.Event.getPossibleChampagneCount;
+import static christmas.domain.Event.isPossibleBenefit;
+import static christmas.domain.Event.obtainBadge;
 import static christmas.domain.Event.obtainChristmasDDayDiscount;
 import static christmas.domain.Event.obtainStarDiscount;
 import static christmas.domain.Event.obtainTotalBenefitPrice;
 import static christmas.domain.Event.obtainTotalDiscount;
 import static christmas.domain.Event.obtainWeekKindDiscount;
+import static christmas.domain.Gift.CHAMPAGNE;
 import static christmas.view.Output.printProgramIntroduction;
 
 import christmas.domain.Badge;
 import christmas.domain.Day;
-import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.domain.OrderMenus;
 import christmas.view.Output;
@@ -71,14 +72,14 @@ public class DecemberEventProgram {
     }
 
     private void printGiftMenu() {
-        Boolean isPossible = isPossibleGetChampagne(order.obtainTotalPrice());
-        Output.printGiftMenu(isPossible);
+        Integer count = getPossibleChampagneCount(order.obtainTotalPrice());
+        Output.printGiftMenu(CHAMPAGNE.getName(), count);
         System.out.println();
     }
 
     private void printBenefitList() {
         Output.printBenefitTitle();
-        if (Event.isPossibleBenefit(order)) {
+        if (!isPossibleBenefit(order)) {
             Output.printNon();
             System.out.println();
             return;
@@ -92,7 +93,7 @@ public class DecemberEventProgram {
         Boolean isWeekend = order.isWeekendDay();
         Output.printWeekDiscount(isWeekend, obtainWeekKindDiscount(order));
         Output.printSpecialDiscount(obtainStarDiscount(order));
-        Output.printGiftEvent(isPossibleGetChampagne(order.obtainTotalPrice()));
+        Output.printGiftEvent(CHAMPAGNE.getPrice(), getPossibleChampagneCount(order.obtainTotalPrice()));
     }
 
     private void printTotalBenefit() {
@@ -106,7 +107,7 @@ public class DecemberEventProgram {
     }
 
     private void printBadge() {
-        Badge badge = obtainBadge(obtainTotalBenefitPrice(order));
+        Badge badge = obtainBadge(order);
         Output.printBadge(badge);
     }
 }

@@ -3,7 +3,6 @@ package christmas.view;
 import static christmas.domain.Badge.SANTA;
 import static christmas.domain.Badge.STAR;
 import static christmas.domain.Badge.TREE;
-import static christmas.domain.Gift.CHAMPAGNE;
 
 import christmas.domain.Badge;
 import christmas.domain.Menu;
@@ -37,10 +36,10 @@ public class Output {
         System.out.println(money + "원");
     }
 
-    public static void printGiftMenu(Boolean isPossible) {
+    public static void printGiftMenu(String giftName, Integer count) {
         System.out.println("<증정 메뉴>");
-        if (isPossible) {
-            System.out.println("샴페인 1개");
+        if (count > 0) {
+            System.out.println(giftName + " " + count + "개");
             return;
         }
         System.out.println("없음");
@@ -75,11 +74,11 @@ public class Output {
         System.out.println("특별 할인: -" + df.format(discount) + "원");
     }
 
-    public static void printGiftEvent(Boolean isPossible) {
-        if (isPossible == false) {
+    public static void printGiftEvent(Integer price, Integer count) {
+        if (count < 1) {
             return;
         }
-        System.out.println("증정 이벤트: -" + df.format(CHAMPAGNE.getPrice()) + "원");
+        System.out.println("증정 이벤트: -" + df.format(price * count) + "원");
     }
 
     public static void printTotalBenefit(Integer totalBenefit) {

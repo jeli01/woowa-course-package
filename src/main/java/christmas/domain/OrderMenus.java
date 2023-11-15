@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -79,6 +80,6 @@ public class OrderMenus {
     }
 
     public Map<Menu, MenuCount> getRawOrderMenus() {
-        return orderMenus;
+        return Collections.unmodifiableMap(orderMenus);
     }
 }
