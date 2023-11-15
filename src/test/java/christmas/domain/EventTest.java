@@ -99,7 +99,6 @@ class EventTest {
     @DisplayName("총 주문 금액 10,000원 이상부터 위의 이벤트가 적용된다.")
     void checkMore10_000PossibleEvent(Integer totalOrderPrice, Boolean applyResult) {
         assertThat(isPossibleDiscountEvent(totalOrderPrice)).isEqualTo(applyResult);
-
     }
 
     @Test

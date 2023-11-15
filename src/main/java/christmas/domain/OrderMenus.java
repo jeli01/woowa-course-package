@@ -46,16 +46,6 @@ public class OrderMenus {
         return true;
     }
 
-    public Integer obtainMenuTotalCount() {
-        Collection<MenuCount> values = orderMenus.values();
-        Integer totalCount = 0;
-        for (MenuCount menuCount : values) {
-            totalCount += menuCount.getRawCount();
-        }
-
-        return totalCount;
-    }
-
     public Integer obtainCategoryCount(MenuCategory menuCategory) {
         Integer count = 0;
         Set<Menu> menus = orderMenus.keySet();
@@ -66,6 +56,16 @@ public class OrderMenus {
             }
         }
         return count;
+    }
+
+    public Integer obtainMenuTotalCount() {
+        Collection<MenuCount> values = orderMenus.values();
+        Integer totalCount = 0;
+        for (MenuCount menuCount : values) {
+            totalCount += menuCount.getRawCount();
+        }
+
+        return totalCount;
     }
 
     public Integer obtainTotalPrice() {

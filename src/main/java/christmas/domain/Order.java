@@ -24,24 +24,24 @@ public class Order {
         return visitDay.isBigger(day);
     }
 
-    public Integer obtainDayDifference(Day day) {
-        return visitDay.obtainDifference(day);
-    }
-
     public boolean isWeekendDay() {
         return visitDay.isWeekend();
-    }
-
-    public Integer obtainMenuCategoryCount(MenuCategory menuCategory) {
-        return orderMenus.obtainCategoryCount(menuCategory);
     }
 
     public boolean isStarDay() {
         return visitDay.isStar();
     }
 
+    public Integer obtainDayDifference(Day day) {
+        return visitDay.obtainDifference(day);
+    }
+
     public Integer obtainTotalPrice() {
         return orderMenus.obtainTotalPrice();
+    }
+
+    public Integer obtainMenuCategoryCount(MenuCategory menuCategory) {
+        return orderMenus.obtainCategoryCount(menuCategory);
     }
 
     public Integer getRawDay() {

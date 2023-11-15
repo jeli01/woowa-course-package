@@ -32,6 +32,10 @@ public class DecemberEventProgram {
         order = new Order(day, orderMenus);
     }
 
+    private void printIntroduction() {
+        printProgramIntroduction();
+    }
+
     public void write() {
         validateWrite();
 
@@ -49,10 +53,6 @@ public class DecemberEventProgram {
         if (order == null) {
             throw new IllegalStateException("read 함수를 먼저 실행하셔야 합니다.");
         }
-    }
-
-    private void printIntroduction() {
-        printProgramIntroduction();
     }
 
     private void printEventBenefitIntroduction() {
