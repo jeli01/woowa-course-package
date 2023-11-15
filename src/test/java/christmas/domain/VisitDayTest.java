@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class VisitDayTest {
-
     @ParameterizedTest
     @ValueSource(ints = {1, 31})
     @DisplayName("날짜는 1이상 31이하의 숫자인 경우, 정상 동작한다.")
