@@ -1,31 +1,42 @@
 package christmas.domain;
 
-import org.assertj.core.api.Assertions;
+import static christmas.domain.Constant.ARBITRARY_COUNT;
+import static christmas.domain.Constant.ARBITRARY_DAY;
+import static christmas.domain.Menu.BARBECUE_RIBS;
+import static christmas.domain.Menu.CHAMPAGNE;
+import static org.assertj.core.api.Assertions.assertThatCode;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OrderTest {
+    private OrderMenus orderMenus = new OrderMenus();
+
+    @BeforeEach
+    void initialize() {
+        orderMenus = new OrderMenus();
+    }
+
     @Test
     @DisplayName("음료만 주문을 하지 않으면, 정상 동작한다.")
     void generateOrder() {
-        OrderMenus orderMenus = new OrderMenus();
-        orderMenus.addMenu(Menu.CHAMPAGNE, new MenuCount(3));
-        orderMenus.addMenu(Menu.BARBECUE_RIBS, new MenuCount(5));
+        orderMenus.addMenu(CHAMPAGNE, new MenuCount(ARBITRARY_COUNT));
+        orderMenus.addMenu(BARBECUE_RIBS, new MenuCount(ARBITRARY_COUNT));
 
-        Assertions.assertThatCode(() -> {
-            new Order(new Day(10), orderMenus);
+        assertThatCode(() -> {
+            new Order(new Day(ARBITRARY_DAY), orderMenus);
         }).doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("음료만 주문했을 경우, 에러가 발생한다.")
     void checkOnlyDrink() {
-        OrderMenus orderMenus = new OrderMenus();
-        orderMenus.addMenu(Menu.CHAMPAGNE, new MenuCount(3));
-        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(5));
+        orderMenus.addMenu(CHAMPAGNE, new MenuCount(ARBITRARY_COUNT));
+        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(ARBITRARY_COUNT));
 
-        Assertions.assertThatCode(() -> {
-            new Order(new Day(10), orderMenus);
-        }).hasMessageContaining("음료만 주문할 수는 없습니다.");
+        assertThatCode(() -> {
+            new Order(new Day(ARBITRARY_DAY), orderMenus);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("음료만 주문할 수는 없습니다.");
     }
 }

@@ -1,6 +1,8 @@
 package christmas.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,7 +13,7 @@ class VisitDayTest {
     @ValueSource(ints = {1, 31})
     @DisplayName("날짜는 1이상 31이하의 숫자인 경우, 정상 동작한다.")
     void generateDay(Integer day) {
-        Assertions.assertThatCode(() -> {
+        assertThatCode(() -> {
             new Day(day);
         }).doesNotThrowAnyException();
     }
@@ -20,8 +22,8 @@ class VisitDayTest {
     @ValueSource(ints = {0, 32})
     @DisplayName("날짜는 1이상 31이하의 숫자가 아닌 경우, 에러가 발생한다.")
     void validateDayRange(Integer day) {
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             new Day(day);
-        }).hasMessageContaining("날짜는 1이상 31이하의 정수여야 합니다.");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("날짜는 1이상 31이하의 정수여야 합니다.");
     }
 }

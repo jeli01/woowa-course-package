@@ -1,6 +1,8 @@
 package christmas.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,7 +12,7 @@ class MenuTest {
     @ValueSource(strings = {"양송이수프", "타파스"})
     @DisplayName("메뉴판에 있으면, 정상 동작한다.")
     void generateMenu(String menu) {
-        Assertions.assertThatCode(() -> {
+        assertThatCode(() -> {
             Menu.translate(menu);
         }).doesNotThrowAnyException();
     }
@@ -19,8 +21,8 @@ class MenuTest {
     @ValueSource(strings = {"없는 메뉴", ""})
     @DisplayName("메뉴판에 없는 메뉴인 경우, 에러가 발생한다.")
     void checkInMenu(String menu) {
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             Menu.translate(menu);
-        }).hasMessageContaining("해당 문자열은 메뉴의 종류가 아닙니다.");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("해당 문자열은 메뉴의 종류가 아닙니다.");
     }
 }
