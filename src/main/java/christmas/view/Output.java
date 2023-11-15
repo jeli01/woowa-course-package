@@ -97,21 +97,25 @@ public class Output {
     public static void printBadge(Badge badge) {
         System.out.println("<12월 이벤트 배지>");
         if (badge == STAR) {
-            System.out.println("별");
+            System.out.print("별");
             return;
         }
         if (badge == TREE) {
-            System.out.println("트리");
+            System.out.print("트리");
             return;
         }
         if (badge == SANTA) {
-            System.out.println("산타");
+            System.out.print("산타");
             return;
         }
-        printNon();
+        printNonNoNewLine();
     }
 
     public static void printNon() {
         System.out.println("없음");
+    }
+
+    public static void printNonNoNewLine() {
+        System.out.print("없음");
     }
 }
