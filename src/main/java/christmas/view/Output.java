@@ -42,7 +42,7 @@ public class Output {
             System.out.println(giftName + " " + count + "개");
             return;
         }
-        System.out.println("없음");
+        printNon();
     }
 
     public static void printBenefitTitle() {
@@ -108,7 +108,7 @@ public class Output {
             System.out.println("산타");
             return;
         }
-        System.out.println("없음");
+        printNon();
     }
 
     public static void printNon() {
