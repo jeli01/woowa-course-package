@@ -46,7 +46,7 @@ public class DecemberEventProgram {
     }
 
     private void printEventBenefitIntroduction() {
-        Output.printEventBenefitIntroduction();
+        Output.printEventBenefitIntroduction(order.getVisitDay().getDay());
         System.out.println();
     }
 

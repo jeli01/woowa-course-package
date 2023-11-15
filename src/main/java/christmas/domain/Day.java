@@ -47,6 +47,10 @@ public class Day {
         return false;
     }
 
+    public Integer getDay() {
+        return day;
+    }
+
     @Override
     public boolean equals(Object object) {
         Day product = (Day) object;

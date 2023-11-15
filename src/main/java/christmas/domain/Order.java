@@ -42,6 +42,10 @@ public class Order {
         return orderMenus.obtainTotalPrice();
     }
 
+    public Day getVisitDay() {
+        return visitDay;
+    }
+
     public OrderMenus getOrderMenus() {
         return orderMenus;
     }
