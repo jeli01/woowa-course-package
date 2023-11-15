@@ -1,5 +1,14 @@
 package christmas.controller;
 
+import static christmas.domain.Badge.obtainBadge;
+import static christmas.domain.Event.isPossibleGetChampagne;
+import static christmas.domain.Event.obtainChristmasDDayDiscount;
+import static christmas.domain.Event.obtainStarDiscount;
+import static christmas.domain.Event.obtainTotalBenefitPrice;
+import static christmas.domain.Event.obtainTotalDiscount;
+import static christmas.domain.Event.obtainWeekKindDiscount;
+import static christmas.view.Output.printProgramIntroduction;
+
 import christmas.domain.Badge;
 import christmas.domain.Day;
 import christmas.domain.Event;
@@ -42,16 +51,16 @@ public class DecemberEventProgram {
     }
 
     private void printIntroduction() {
-        Output.printProgramIntroduction();
+        printProgramIntroduction();
     }
 
     private void printEventBenefitIntroduction() {
-        Output.printEventBenefitIntroduction(order.getVisitDay().getDay());
+        Output.printEventBenefitIntroduction(order.getRawDay());
         System.out.println();
     }
 
     private void printOrderMenu() {
-        Output.printOrderMenu(order.getOrderMenus().getOrderMenus());
+        Output.printOrderMenu(order.getRawOrderMenus());
         System.out.println();
     }
 
@@ -62,7 +71,7 @@ public class DecemberEventProgram {
     }
 
     private void printGiftMenu() {
-        Boolean isPossible = Event.isPossibleGetChampagne(order.obtainTotalPrice());
+        Boolean isPossible = isPossibleGetChampagne(order.obtainTotalPrice());
         Output.printGiftMenu(isPossible);
         System.out.println();
     }
@@ -79,25 +88,25 @@ public class DecemberEventProgram {
     }
 
     private void printBenefitPriorContents() {
-        Output.printChristmasDDayDiscount(Event.obtainChristmasDDayDiscount(order));
+        Output.printChristmasDDayDiscount(obtainChristmasDDayDiscount(order));
         Boolean isWeekend = order.isWeekendDay();
-        Output.printWeekDiscount(isWeekend, Event.obtainWeekKindDiscount(order));
-        Output.printSpecialDiscount(Event.obtainStarDiscount(order));
-        Output.printGiftEvent(Event.isPossibleGetChampagne(order.obtainTotalPrice()));
+        Output.printWeekDiscount(isWeekend, obtainWeekKindDiscount(order));
+        Output.printSpecialDiscount(obtainStarDiscount(order));
+        Output.printGiftEvent(isPossibleGetChampagne(order.obtainTotalPrice()));
     }
 
     private void printTotalBenefit() {
-        Output.printTotalBenefit(Event.obtainTotalBenefitPrice(order));
+        Output.printTotalBenefit(obtainTotalBenefitPrice(order));
         System.out.println();
     }
 
     private void printPayment() {
-        Output.printPayment(order.obtainTotalPrice() - Event.obtainTotalDiscount(order));
+        Output.printPayment(order.obtainTotalPrice() - obtainTotalDiscount(order));
         System.out.println();
     }
 
     private void printBadge() {
-        Badge badge = Badge.obtainBadge(Event.obtainTotalBenefitPrice(order));
+        Badge badge = obtainBadge(obtainTotalBenefitPrice(order));
         Output.printBadge(badge);
     }
 }

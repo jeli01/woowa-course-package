@@ -1,5 +1,8 @@
 package christmas.view;
 
+import static christmas.domain.Badge.SANTA;
+import static christmas.domain.Badge.STAR;
+import static christmas.domain.Badge.TREE;
 import static christmas.domain.Gift.CHAMPAGNE;
 
 import christmas.domain.Badge;
@@ -24,7 +27,7 @@ public class Output {
         System.out.println("<주문 메뉴>");
         Set<Menu> menus = orderMenus.keySet();
         for (Menu menu : menus) {
-            System.out.println(menu.getName() + " " + orderMenus.get(menu).getCount() + "개");
+            System.out.println(menu.getName() + " " + orderMenus.get(menu).getRawCount() + "개");
         }
     }
 
@@ -94,15 +97,15 @@ public class Output {
 
     public static void printBadge(Badge badge) {
         System.out.println("<12월 이벤트 배지>");
-        if (badge == Badge.STAR) {
+        if (badge == STAR) {
             System.out.println("별");
             return;
         }
-        if (badge == Badge.TREE) {
+        if (badge == TREE) {
             System.out.println("트리");
             return;
         }
-        if (badge == Badge.SANTA) {
+        if (badge == SANTA) {
             System.out.println("산타");
             return;
         }

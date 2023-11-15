@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static christmas.domain.EventApplier.isPossibleDiscountEvent;
 import static christmas.domain.Gift.CHAMPAGNE;
 
 public class Event {
@@ -11,7 +12,7 @@ public class Event {
 
     public static Integer obtainChristmasDDayDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
+        if (!isPossibleDiscountEvent(totalOrderPrice)) {
             return 0;
         }
 
@@ -26,7 +27,7 @@ public class Event {
 
     public static Integer obtainWeekKindDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
+        if (!isPossibleDiscountEvent(totalOrderPrice)) {
             return 0;
         }
 
@@ -43,7 +44,7 @@ public class Event {
 
     public static Integer obtainStarDiscount(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
+        if (!isPossibleDiscountEvent(totalOrderPrice)) {
             return 0;
         }
 
@@ -62,7 +63,7 @@ public class Event {
 
     public static Badge obtainBadge(Order order) {
         Integer totalOrderPrice = order.obtainTotalPrice();
-        if (!EventApplier.isPossibleDiscountEvent(totalOrderPrice)) {
+        if (!isPossibleDiscountEvent(totalOrderPrice)) {
             return null;
         }
 
@@ -76,7 +77,7 @@ public class Event {
         totalBenefitPrice += obtainChristmasDDayDiscount(order);
         totalBenefitPrice += obtainWeekKindDiscount(order);
         totalBenefitPrice += obtainStarDiscount(order);
-        if (Event.isPossibleGetChampagne(order.obtainTotalPrice())) {
+        if (isPossibleGetChampagne(order.obtainTotalPrice())) {
             totalBenefitPrice += CHAMPAGNE.getPrice();
         }
         return totalBenefitPrice;
@@ -92,6 +93,6 @@ public class Event {
     }
 
     public static Boolean isPossibleBenefit(Order order) {
-        return Event.obtainTotalDiscount(order) == 0 && !Event.isPossibleGetChampagne(order.obtainTotalPrice());
+        return obtainTotalDiscount(order) == 0 && !isPossibleGetChampagne(order.obtainTotalPrice());
     }
 }

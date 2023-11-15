@@ -16,15 +16,7 @@ public class MenuCount {
         }
     }
 
-    public Integer obtainSumWithCount(Integer input) {
-        return input + count;
-    }
-
-    public Integer obtainPriceMultiplyCount(Integer price) {
-        return price * count;
-    }
-
-    public Integer getCount() {
+    public Integer getRawCount() {
         return count;
     }
 }

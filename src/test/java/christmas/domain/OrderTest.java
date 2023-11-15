@@ -4,6 +4,7 @@ import static christmas.domain.Constant.ARBITRARY_COUNT;
 import static christmas.domain.Constant.ARBITRARY_DAY;
 import static christmas.domain.Menu.BARBECUE_RIBS;
 import static christmas.domain.Menu.CHAMPAGNE;
+import static christmas.domain.Menu.RED_WINE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ class OrderTest {
     @DisplayName("음료만 주문했을 경우, 에러가 발생한다.")
     void checkOnlyDrink() {
         orderMenus.addMenu(CHAMPAGNE, new MenuCount(ARBITRARY_COUNT));
-        orderMenus.addMenu(Menu.RED_WINE, new MenuCount(ARBITRARY_COUNT));
+        orderMenus.addMenu(RED_WINE, new MenuCount(ARBITRARY_COUNT));
 
         assertThatCode(() -> {
             new Order(new Day(ARBITRARY_DAY), orderMenus);

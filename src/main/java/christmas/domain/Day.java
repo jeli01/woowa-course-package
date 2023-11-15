@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import static christmas.domain.EventDayProvider.obtainStarDays;
+import static christmas.domain.EventDayProvider.obtainWeekends;
+
 import java.util.List;
 
 public class Day {
@@ -32,7 +35,7 @@ public class Day {
     }
 
     public boolean isWeekend() {
-        List<Day> weekends = EventDayProvider.obtainWeekends();
+        List<Day> weekends = obtainWeekends();
         if (weekends.contains(new Day(day))) {
             return true;
         }
@@ -40,15 +43,11 @@ public class Day {
     }
 
     public boolean isStar() {
-        List<Day> starDays = EventDayProvider.obtainStarDays();
+        List<Day> starDays = obtainStarDays();
         if (starDays.contains(new Day(day))) {
             return true;
         }
         return false;
-    }
-
-    public Integer getDay() {
-        return day;
     }
 
     @Override
@@ -58,5 +57,9 @@ public class Day {
             return true;
         }
         return false;
+    }
+
+    public Integer getRawDay() {
+        return day;
     }
 }

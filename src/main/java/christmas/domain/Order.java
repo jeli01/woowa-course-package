@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.Map;
+
 public class Order {
     private static final String DRINK_ONLY_ERROR = "음료만 주문할 수는 없습니다.";
 
@@ -42,11 +44,11 @@ public class Order {
         return orderMenus.obtainTotalPrice();
     }
 
-    public Day getVisitDay() {
-        return visitDay;
+    public Integer getRawDay() {
+        return visitDay.getRawDay();
     }
 
-    public OrderMenus getOrderMenus() {
-        return orderMenus;
+    public Map<Menu, MenuCount> getRawOrderMenus() {
+        return orderMenus.getRawOrderMenus();
     }
 }

@@ -29,7 +29,7 @@ public class OrderMenus {
     }
 
     private void validateMenuTotalCount(MenuCount count) {
-        Integer totalCount = obtainMenuTotalCount() + count.getCount();
+        Integer totalCount = obtainMenuTotalCount() + count.getRawCount();
         if (MAX_ORDER_COUNT < totalCount) {
             throw new IllegalArgumentException(MAX_ORDER_COUNT_ERROR);
         }
@@ -49,7 +49,7 @@ public class OrderMenus {
         Collection<MenuCount> values = orderMenus.values();
         Integer totalCount = 0;
         for (MenuCount menuCount : values) {
-            totalCount = menuCount.obtainSumWithCount(totalCount);
+            totalCount += menuCount.getRawCount();
         }
 
         return totalCount;
@@ -61,7 +61,7 @@ public class OrderMenus {
         for (Menu menu : menus) {
             if (menu.isCategory(menuCategory)) {
                 MenuCount menuCount = orderMenus.get(menu);
-                count = menuCount.obtainSumWithCount(count);
+                count += menuCount.getRawCount();
             }
         }
         return count;
@@ -72,13 +72,13 @@ public class OrderMenus {
         Set<Menu> menus = orderMenus.keySet();
         for (Menu menu : menus) {
             MenuCount menuCount = orderMenus.get(menu);
-            Integer oneKindMenuPrice = menu.obtainPriceMultiplyCount(menuCount);
+            Integer oneKindMenuPrice = menu.getPrice() * menuCount.getRawCount();
             totalPrice += oneKindMenuPrice;
         }
         return totalPrice;
     }
 
-    public Map<Menu, MenuCount> getOrderMenus() {
+    public Map<Menu, MenuCount> getRawOrderMenus() {
         return orderMenus;
     }
 }

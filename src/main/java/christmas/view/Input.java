@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static java.lang.Integer.parseInt;
+
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Day;
 import christmas.domain.Menu;
@@ -11,7 +13,7 @@ public class Input {
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
         String line = Console.readLine();
         try {
-            Integer input = Integer.parseInt(line);
+            Integer input = parseInt(line);
             Day day = new Day(input);
             return day;
         } catch (IllegalArgumentException e) {
@@ -36,7 +38,7 @@ public class Input {
         for (String menuAndCount : menuAndCounts) {
             String[] menuOrCount = menuAndCount.split("-");
             validateLength(menuOrCount);
-            orderMenus.addMenu(Menu.translate(menuOrCount[0]), new MenuCount(Integer.parseInt(menuOrCount[1])));
+            orderMenus.addMenu(Menu.translate(menuOrCount[0]), new MenuCount(parseInt(menuOrCount[1])));
         }
     }
 

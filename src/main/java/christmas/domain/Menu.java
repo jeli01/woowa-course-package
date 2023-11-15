@@ -55,11 +55,11 @@ public enum Menu {
         return false;
     }
 
-    public Integer obtainPriceMultiplyCount(MenuCount count) {
-        return count.obtainPriceMultiplyCount(price);
-    }
-
     public String getName() {
         return name;
+    }
+
+    public Integer getPrice() {
+        return price;
     }
 }
