@@ -7,4 +7,6 @@ java-racing-car
 
 java-lotto
 
+java-christmas-6-jeli01
+
 순으로 학습하며 코드가 발전해 나갑니다.
