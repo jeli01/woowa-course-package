@@ -9,13 +9,13 @@
 
 ## 링크
 
-#### [java-base-ball](https://github.com/jeli01/woowa-course-package/tree/main/java-baseball-6)
+#### [java-base-ball Link!](https://github.com/jeli01/woowa-course-package/tree/main/java-baseball-6)
 
-#### [java-racing-car](https://github.com/jeli01/woowa-course-package/tree/main/java-racingcar-6)
+#### [java-racing-car Link!](https://github.com/jeli01/woowa-course-package/tree/main/java-racingcar-6)
 
-#### [java-lotto-6](https://github.com/jeli01/woowa-course-package/tree/main/java-lotto-6)
+#### [java-lotto-6 Link!](https://github.com/jeli01/woowa-course-package/tree/main/java-lotto-6)
 
-#### [java-christmas-6-jeli01](https://github.com/jeli01/woowa-course-package/tree/main/java-christmas-6-jeli01)
+#### [java-christmas-6-jeli01 Link!](https://github.com/jeli01/woowa-course-package/tree/main/java-christmas-6-jeli01)
 
 
 순으로 학습하며 코드가 발전해 나갑니다.
