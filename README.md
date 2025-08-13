@@ -22,4 +22,4 @@
 
 ---
 
-각 미션이 끝나고 essay를 작성하고 회고합니다. ( woowa-nth-essay )
+[각 미션이 끝난 뒤의 회고](https://github.com/jeli01/woowa-course-package/tree/main/essay)
